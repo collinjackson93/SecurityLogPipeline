@@ -48,6 +48,23 @@ var express = require('express')
     , logger = require('./lib/utils/logging')
     , apps = require("./lib/utils/apps");
 
+// Begin AOP code
+// var meld = require('meld');
+// var Logstash = require('logstash-client');
+// var logstash = new Logstash({
+//   type: 'tcp',
+//   host: 'logstash',
+//   port: 5000
+// });
+//
+// meld.before(DeviceInfo, 'storeDeviceInfo', function(req) {
+//   logstash.send({
+//     '@timestamp': new Date(),
+//     'method': 'device-utils.storeDeviceInfo',
+//     'parameters': req
+//   });
+// });
+// End AOP code
 
 var config = configuration_handler.initializeConfiguration();
 var ruleSchedule = null;
