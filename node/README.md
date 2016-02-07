@@ -1,140 +1,327 @@
-![logo](/public/core/css/img/logo.png) MediacenterJS <sup>Beta</sup>
-=============
+# faker.js - generate massive amounts of fake data in the browser and node.js
 
-[![mediacenterjs](http://mediacenterjs.com/global/images/screen1.png)](http://www.mediacenterjs.com)
+![Faker.js](http://imgur.com/KiinQ.png)
 
-__A NodeJS based media center__ 
+[![Build Status](https://travis-ci.org/Marak/faker.js.svg?branch=master)](https://travis-ci.org/Marak/faker.js)
 
-Website: http://www.mediacenterjs.com 
+[![npm version](https://badge.fury.io/js/faker.svg)](http://badge.fury.io/js/faker)
 
-What is MediacenterJS?
-=========================
+## Demo
 
-MediacenterJS is a media center (like for instance XBMC) running completely from the comfort of your browser.
-The backend is based on Node.JS with ExpressJS and JADE templates. 
-The MVC structure allows developers to add a plugin to MCJS with ease. 
-The server application runs on Windows, MAC and Linux systems, the client runs in every modern browser (Chrome is preferable though).
+[http://marak.com/faker.js/](http://marak.com/faker.js/)
 
-Who is this for? 
-=========================
+## Hosted API Microservice
 
-Although services like Netflix or HBOgo are really awesome, they do not have every media you might enjoy or already own. Especially if you're born before the streaming age like me, you'll probably have a lot of media locally somewhere. So, if you want the convienence of the aformentioned services, but you want to use your own media, this app is for you!
+[http://faker.hook.io](http://faker.hook.io/)
+ - Supports all Faker API Methods
+ - Full-Featured Microservice
+ - Hosted by [hook.io](http://hook.io)
 
-# User manual
+```bash
+curl http://faker.hook.io?property=name.findName&locale=de
+```
 
-[Installing MediacenterJS](https://github.com/jansmolders86/mediacenterjs/wiki/User-manual:---installing-MediacenterJS)
+## Usage
 
-[Guidelines media library](https://github.com/jansmolders86/mediacenterjs/wiki/User-manual:-Guidelines-media-library)
+### Browser
 
-[Using the remote control](https://github.com/jansmolders86/mediacenterjs/wiki/User-Manual:-Using-the-remote-control)
+    <script src = "faker.js" type = "text/javascript"></script>
+    <script>
+      var randomName = faker.name.findName(); // Caitlyn Kerluke
+      var randomEmail = faker.internet.email(); // Rusty@arne.info
+      var randomCard = faker.helpers.createCard(); // random contact card containing many properties
+    </script>
 
-[FAQ](https://github.com/jansmolders86/mediacenterjs/wiki/User-manual:-FAQ)
+### Node.js
 
-# Developer manual
+    var faker = require('faker');
 
-[Explanation plugin framework](https://github.com/jansmolders86/mediacenterjs/wiki/Developer-manual:-plugin-framework)
+    var randomName = faker.name.findName(); // Rowan Nikolaus
+    var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
+    var randomCard = faker.helpers.createCard(); // random contact card containing many properties
 
-[Start building an plugin using the plugin generator](https://github.com/jansmolders86/mediacenterjs/wiki/Developer-manual:-Start-building-an-app-using-the-app-generator)
-
-[Helper functions](https://github.com/jansmolders86/mediacenterjs/wiki/Developer-manual:-Helper-functions)
-
-[Front end and view explantation](https://github.com/jansmolders86/mediacenterjs/wiki/Developer-manual:--front-end-and-view-explanation)
-
-[Create a new theme](https://github.com/jansmolders86/mediacenterjs/wiki/Developer-manual:-Themes)
-
-Current features:
-===========
-
-* Routing
-* MVC 'App' Framework
-* Clientside setup
-* Dynamic dashboard
-* Keyboard controls
-* Movie indexing
-* Multi-language support
-* Display movies, tvshow and music information 
-* Local caching of information and images
-* Transcoding and playback of movies, tv shows and music
-* Subtitle support
-* Weather information based on location
-* Basic screensaver
-* I3d tag support
-* Remote control
-* Plugin manager
-* Page visibility API
-* YouTube app
-* Version manager
-* Device manager
-* Parental control functionality
-* Basic scheduled tasks
-
-Supported file formats:
-==================
-Video: AVI/MOV/WMV/MP4/MKV/MPEG
-
-Audio: MP3/M4a 
-
-Known issues:
-=================
-
-* Device streaming still in heavy development
-* Seeking beyond buffer not working yet.
-
-Be sure to check the open issues before filing a new one.
-If you're filing a new issue, be sure to mention your NodeJS version (node -v in a terminal or prompt) and the platform (eg Windows or Ubuntu, Debian etc) you are running the MCJS server on.
-
-Also check out what is currently being developed and/or fixed on MCJS Trello page: https://trello.com/b/czjyYsFi/mediacenterjs
-
-Translations
--------------
-For now, all the translation files are stored in the /public/translations folder.
-Feel free to contribute by translating.
-
-### Main contributors: ###
-
-* [Terry MooreII](https://github.com/TerryMooreII) For the Javascript Jabber app and building the Plugin manager
-* [Stefan Hoffman](https://github.com/hoffi) for his hudge contribution to the backend and German translation 
-* [Jonathan Bailey](https://github.com/Jon889) for his hudge code contributions and database abstraction layer
-* [Matthew Marino](https://github.com/Karnith) for his FFMPEG expertise
-
-###Special thanks to these contributors:###
+## API
 
 
-* [Sylvain](https://github.com/flyinva) for his French translation
-* [Alberto Jerez](https://github.com/ajerez) and David Toraño for their Spanish translation
-* [Domenico Luciani](https://github.com/dlion) for his Italian translation
-* [Alexey Bobyrev](https://github.com/sfate) for his Russian and Ukrainian translation
-* [Doğan Aydın](https://github.com/doganaydin) And [William Belle](https://github.com/williambelle) for their Turkish translation
-* [Adam](https://github.com/brutalhonesty) for his YouTube App
-* [Ionică Bizău](https://github.com/IonicaBizau) for the [Youtube API NPM module](https://github.com/IonicaBizau/youtube-api)
-* [Luis Eduardo Brito](https://github.com/luiseduardobrito) and [Welkson Ramos](https://github.com/welksonramos) for their Portuguese translation
-* [Kasper Isager](https://github.com/kasperisager) for his Danish translation
-* [Robin Larsson](https://github.com/TankMasterRL) and 
-[Skruf90](https://github.com/skruf90)for their Swedish translation
-* [Skruf90](https://github.com/skruf90) for his Norwegian translation
-* [Jussi Vatjus](https://github.com/jupe) for his code support
-* [Matthew Szatmary](https://github.com/szatmary) for his FFMPEG expertise
-* [Richard Bernards](https://github.com/RichardBernards) for his architectural knowledge/support
-* [Lucien Immink](https://github.com/lucienimmink) for his javascript knowledge/support
-* [andreme](https://github.com/andreme) for his bugfixes
-* [Jérémie Parker](https://github.com/p-j) for his bugfixes
-* [Gary Katsevman](https://github.com/gkatsev) for his bugfixes
-* [Marco Da Col](https://github.com/ildac) for his bugfixes and Italian translations
-* [Chinmaya Kumar Padhi](https://github.com/chinmayapadhi) for updating installation instructions OSX
-* [Valerij Primachenko](https://github.com/vprimachenko) for compiling the executable for Windows
-* P.J. Onori for his icons
+### Faker.fake()
 
-I'm building MCJS in my free time so if you want to encourage me to continue this enormous project, feel free to do so.
+As of version `v3.0.0` faker.js contains a super useful generator method `Faker.fake` for combining faker API methods using a mustache string format.
 
-[![Donate](http://www.mediacenterjs.com/global/images/github/donate-paypal.jpg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DHV3M4SST8C5L)
+**Example:**
 
-[![I Love Open Source](http://www.iloveopensource.io/images/logo-lightbg.png)](http://www.iloveopensource.io/projects/5495e0d1084e0d1f2a000599)
+``` js
+console.log(faker.fake('{{name.lastName}}, {{name.firstName}} {{name.suffix}}'));
+// outputs: "Marks, Dean Sr."
+```
 
-[![GitPay](http://img.shields.io/gratipay/JanSmolders.svg)](https://gratipay.com/JanSmolders/)
+This will interpolate the format string with the value of methods `name.lastName()`, `name.firstName()`, and `name.suffix()`
 
-For questions/contributions feel free to email me at: jansmolders86@gmail.com
-This application uses the GNU General Public License. See <http://www.gnu.org/licenses/>.
+### API Methods
 
-Copyright (C) 2015 - Jan Smolders
+* address
+  * zipCode
+  * city
+  * cityPrefix
+  * citySuffix
+  * streetName
+  * streetAddress
+  * streetSuffix
+  * streetPrefix
+  * secondaryAddress
+  * county
+  * country
+  * countryCode
+  * state
+  * stateAbbr
+  * latitude
+  * longitude
+* commerce
+  * color
+  * department
+  * productName
+  * price
+  * productAdjective
+  * productMaterial
+  * product
+* company
+  * suffixes
+  * companyName
+  * companySuffix
+  * catchPhrase
+  * bs
+  * catchPhraseAdjective
+  * catchPhraseDescriptor
+  * catchPhraseNoun
+  * bsAdjective
+  * bsBuzz
+  * bsNoun
+* date
+  * past
+  * future
+  * between
+  * recent
+  * month
+  * weekday
+* fake
+* finance
+  * account
+  * accountName
+  * mask
+  * amount
+  * transactionType
+  * currencyCode
+  * currencyName
+  * currencySymbol
+* hacker
+  * abbreviation
+  * adjective
+  * noun
+  * verb
+  * ingverb
+  * phrase
+* helpers
+  * randomize
+  * slugify
+  * replaceSymbolWithNumber
+  * replaceSymbols
+  * shuffle
+  * mustache
+  * createCard
+  * contextualCard
+  * userCard
+  * createTransaction
+* image
+  * image
+  * avatar
+  * imageUrl
+  * abstract
+  * animals
+  * business
+  * cats
+  * city
+  * food
+  * nightlife
+  * fashion
+  * people
+  * nature
+  * sports
+  * technics
+  * transport
+* internet
+  * avatar
+  * email
+  * userName
+  * protocol
+  * url
+  * domainName
+  * domainSuffix
+  * domainWord
+  * ip
+  * userAgent
+  * color
+  * mac
+  * password
+* lorem
+  * words
+  * sentence
+  * sentences
+  * paragraph
+  * paragraphs
+* name
+  * firstName
+  * lastName
+  * findName
+  * jobTitle
+  * prefix
+  * suffix
+  * title
+  * jobDescriptor
+  * jobArea
+  * jobType
+* phone
+  * phoneNumber
+  * phoneNumberFormat
+  * phoneFormats
+* random
+  * number
+  * arrayElement
+  * objectElement
+  * uuid
+  * boolean
 
-[![Analytics](https://ga-beacon.appspot.com/UA-49988223-1/mediacenterjs/index)](https://github.com/igrigorik/ga-beacon)
+
+## Localization
+
+As of version `v2.0.0` faker.js supports over 27 different language definition packs.
+
+The default language is set to English.
+
+Setting a new locale is simple:
+
+```js
+// sets locale to de
+faker.locale = "de";
+```
+
+ * de
+ * de_AT
+ * de_CH
+ * el_GR
+ * en
+ * en_AU
+ * en_BORK
+ * en_CA
+ * en_GB
+ * en_IE
+ * en_IND
+ * en_US
+ * en_au_ocker
+ * es
+ * es_MX
+ * fa
+ * fr
+ * fr_CA
+ * ge
+ * it
+ * ja
+ * ko
+ * nb_NO
+ * nep
+ * nl
+ * pl
+ * pt_BR
+ * ru
+ * sk
+ * sv
+ * tr
+ * uk
+ * vi
+ * zh_CN
+ * zh_TW
+
+
+### Individual Localization Packages
+
+As of vesion `v3.0.0` faker.js supports incremental loading of locales. 
+
+By default, requiring `faker` will include *all* locale data.
+
+In a production environment, you may only want to include the locale data for a specific set of locales.
+
+```js
+// loads only de locale
+var faker = require('faker/locale/de');
+```
+
+## Tests
+
+    npm install .
+    make test
+
+You can view a code coverage report generated in coverage/lcov-report/index.html.
+
+## Projects Built with faker.js
+
+### Fake JSON Schema
+
+Use faker generators to populate JSON Schema samples.
+See: https://github.com/pateketrueke/json-schema-faker/
+
+### CLI
+
+Run faker generators from Command Line.
+See: https://github.com/lestoni/faker-cli
+
+**Want to see your project added here? Let us know!**
+
+### Meteor
+
+#### Meteor installation
+
+      meteor add practicalmeteor:faker
+
+#### meteor usage, both client and server
+
+      var randomName = faker.name.findName(); // Rowan Nikolaus
+      var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
+      var randomCard = faker.helpers.createCard(); // random contact card containing many properties
+
+## Version Release Schedule
+
+faker.js is a popular project used by many organizations and individuals in production settings. Major and Minor version releases are generally on a monthly schedule. Bugs fixes are addressed by severity and fixed as soon as possible.
+
+If you require the absolute latest version of `faker.js` the `master` branch @ http://github.com/marak/faker.js/ should always be up to date and working.
+
+## Authors
+
+#### Matthew Bergman & Marak Squires
+
+faker.js - Copyright (c) 2014-2015
+Matthew Bergman & Marak Squires
+http://github.com/marak/faker.js/
+
+faker.js was inspired by and has used data definitions from:
+
+ * https://github.com/stympy/faker/ - Copyright (c) 2007-2010 Benjamin Curtis
+ * http://search.cpan.org/~jasonk/Data-Faker-0.07/ - Copyright 2004-2005 by Jason Kohles
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+

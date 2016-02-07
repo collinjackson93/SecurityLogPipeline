@@ -10,9 +10,8 @@ COPY package.json /tmp/package.json
 RUN cd /tmp && npm install
 RUN mkdir -p /src && cp -a /tmp/node_modules /src/
 
-ENV NODE_ENV development
+RUN chmod 0777 /src/node_modules/.bin/mocha
 
 WORKDIR /src
 COPY . /src
-EXPOSE 3000
-CMD npm start
+CMD npm test
