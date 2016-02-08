@@ -5,9 +5,7 @@ node:
 
 logstash:
   image: logstash:latest
-  command: 'input { tcp { port => 5000 } } output { elasticsearch { hosts => ["elasticsearch:9200"] } }'
-  tty: true
-  stdin_open: true
+  command: logstash -e 'input { tcp { port => 5000 } } output { elasticsearch { hosts => ["elasticsearch:9200"] } }'
   ports:
     - "5000:5000"
   links:

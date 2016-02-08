@@ -2,31 +2,60 @@ if (typeof module !== 'undefined') {
     var assert = require('assert');
     var sinon = require('sinon');
     var faker = require('../index');
+    var meld = require('meld');
+    var Logstash = require('logstash-client');
+    var logstash = new Logstash({
+      type: 'tcp',
+      host: 'logstash',
+      port: 5000
+    });
 }
 
 describe("date.js", function () {
     describe("past()", function () {
-        it("returns a date N years into the past", function () {
+        // Start AOP
+        var pastRemover = meld.around(faker.date, 'past', function(joinpoint) {
+          console.error('This happened');
+          var cb = joinpoint.args.pop();
+          var retval = joinpoint.proceedApply(joinpoint.args);
+          logstash.send({
+            '@timestamp': new Date(),
+            'method': 'date.past()',
+            'input': joinpoint.args,
+            'output': retval
+          }, function(){
+            console.error('Message sent');
+            cb(retval);
+          });
+        });
+        // End AOP
+        it("returns a date N years into the past", function (done) {
 
-            var date = faker.date.past(75);
-            assert.ok(date < new Date());
+            faker.date.past(75, function(date) {
+              assert.ok(date < new Date());
+              done();
+            });
         });
 
-        it("returns a past date when N = 0", function () {
+        it("returns a past date when N = 0", function (done) {
 
             var refDate = new Date();
-            var date = faker.date.past(0, refDate.toJSON());
+            faker.date.past(0, refDate.toJSON(), function(date) {
+              assert.ok(date < refDate); // date should be before the date given
+              done();
+            });
 
-            assert.ok(date < refDate); // date should be before the date given
         });
 
-        it("returns a date N years before the date given", function () {
+        it("returns a date N years before the date given", function (done) {
 
             var refDate = new Date(2120, 11, 9, 10, 0, 0, 0); // set the date beyond the usual calculation (to make sure this is working correctly)
 
-            var date = faker.date.past(75, refDate.toJSON());
+            faker.date.past(75, refDate.toJSON(), function(date) {
+              assert.ok(date < refDate && date > new Date()); // date should be before date given but after the current time
+              done();
+            });
 
-            assert.ok(date < refDate && date > new Date()); // date should be before date given but after the current time
         });
 
     });
