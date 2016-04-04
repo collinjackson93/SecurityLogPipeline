@@ -13,6 +13,7 @@ if (typeof module !== 'undefined') {
 
 describe("date.js", function () {
     describe("past()", function () {
+      this.timeout(8000);
         // Start AOP
         var pastRemover = meld.around(faker.date, 'past', function(joinpoint) {
           console.error('This happened');
